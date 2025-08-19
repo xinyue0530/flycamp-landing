@@ -1,42 +1,121 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+:root{--brand:#246BCE;--accent:#ee952fd2;--text:#146ae1;--muted:#6B7280;--bg:#F7FAFF}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,‘PingFang SC’,‘Microsoft Yahei’,sans-serif;color:var(–text);background:var(–bg)}
+a{color:inherit;text-decoration:none}
+.container{max-width:1024px;margin:0 auto;padding:24px}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:12px 0}
+.logo{font-weight:800;color:var(–brand)}
+.btn{background:var(–brand);color:#013705;padding:10px 16px;border:none;border-radius:20px;cursor:pointer}
+.btn.secondary{background:var(–brand);color:#cf3c3c;padding:10px 16px;border:none;border-radius:8px;cursor:pointer}
+.section{padding:48px 0}
+.card{background:linear-gradient(rgba(215, 251, 232, 0.85), rgba(94, 128, 109, 0.584));border:1px solid #2f7842;border-radius:12px;padding:16px}
+.grid{display:grid;gap:16px}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.badge{display:inline-block;background:rgba(137, 171, 218, 0.08);color:var(–brand);padding:6px 10px;border-radius:999px;font-size:12px}
+.hero{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+.hero h1{font-size:36px;margin:0}
+.hero p{line-height:1.6}
+footer{padding:24px 0;color:var(–muted);font-size:14px}
+.video{width:100%;border-radius:12px;border:1px solid #E5E7EB;background:#000}
+.small{font-size:12px;color:var(–muted)}
+
+.chatbox{position:fixed;right:20px;bottom:20px;width:340px;max-height:70vh;background:#dd1010;border:1px solid #E5E7EB;border-radius:12px;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.08);z-index:50}
+.chat-header{background:var(–brand);color:#de1313;padding:10px 12px;font-weight:600}
+.chat-body{padding:10px;overflow:auto;display:flex;flex-direction:column;gap:8px}
+.msg{padding:10px;border-radius:10px;max-width:85%;white-space:pre-wrap}
+.me{align-self:flex-end;background:#9bc1f1;border:1px solid #045fd0}
+.bot{align-self:flex-start;background:linear-gradient(rgba(251, 222, 251, 0.85), rgba(199, 164, 196, 0.9));border:1px solid #76024d}
+.chat-input{display:flex;gap:8px;padding:10px;border-top:1px solid #E5E7EB}
+input[type=“text”]{flex:1;padding:10px;border:1px solid #E5E7EB;border-radius:8px}
+
+@media (max-width:768px){.grid-3{grid-template-columns:1fr}}
+.nav { position: relative; }
+.logo { position: absolute; left: 50%; transform: translateX(-50%); }
+.actions { position: absolute; right: 0; }
+header { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; position: relative; }
+
+body {
+  background: linear-gradient(rgba(204, 225, 250, 0.85), rgba(89, 117, 136, 0.9)), 
+              url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') center/cover fixed;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.4);
+  z-index: -1;
+}
+
+/* text-shadow property moved into .artistic-title selector below */
+
+  .artistic-title::before {
+  background: linear-gradient(45deg, 
+      transparent 0%, 
+      rgba(255, 215, 0, 0.2) 30%, 
+      transparent 70%);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+  100% { transform: translateX(100%); }
+}
+    .artistic-title {
+        font-size: 6rem;
+        font-weight: bold;
+        color: #030b79;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        padding: 20px;
+        text-shadow:
+          0 0 5px rgba(255, 215, 0, 0.8),
+          0 0 10px rgba(255, 215, 0, 0.6),
+          0 0 15px rgba(255, 215, 0, 0.4),
+          0 0 20px rgba(255, 215, 0, 0.2);
+    }
+
+    .nav-btn {
+  font-size: 1.3rem;
+}
+
+@media (max-width: 768px) {
+  .nav-btn {
+    font-size: 1.3rem;
   }
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+.nav-btn {
+  padding: 0.9rem 2rem; /* 增加内边距 */
+  min-width: 150px; /* 设置最小宽度 */
+  font-size: 1.2rem; /* 增加字体大小 */
+  border-radius: 0.5rem; /* 增加圆角 */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* 添加过渡效果 */
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.nav-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+.nav-btn.faq {
+  background: linear-gradient(135deg, #0209d5, #001863);
+  color: #f6f6f7;
+  border: 2px solid #dce403;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+.nav-btn.apply {
+  background: linear-gradient(135deg, #ff9800, #ff5722);
+  color: white;
+  border: 2px solid #ff5722;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+.nav-btn.supply {
+  background: linear-gradient(135deg, #0a000050, #020000);
+  color: rgb(250, 248, 248);
+  border: 2px solid #f7f5f5;
 }
